@@ -21,45 +21,44 @@
 
 class WiFly : public SoftwareSerial
 {
-  public:
-    WiFly(uint8_t rx, uint8_t tx);
-	
-	static WiFly* getInstance() {
-	   return instance;
-	}
-    
-    boolean init();
-    boolean reset();
-    boolean reboot();
-    
-    boolean join(const char *ssid, const char *phrase = NULL, int auth = WIFLY_AUTH_OPEN);
-    boolean leave();
-    
-    boolean connect(const char *host, uint16_t port, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+	public:
+		WiFly(uint8_t rx, uint8_t tx);
 
-    boolean staticIP(const char *ip, const char *mask, const char *gateway);
-    
-    int send(const char *data, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
-    int send(const uint8_t *data, int len, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
-    int receive(uint8_t *buf, int len, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
-    
-    boolean ask(const char *q, const char *a, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
-    boolean sendCommand(const char *cmd, const char *ack = NULL, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
-  
-    boolean commandMode();
-    boolean dataMode();
-    
-    void clear();
+		static WiFly* getInstance() {
+			return instance;
+		}
 
-    float version();
-    
-  private:
-    static WiFly*  instance;
-	
-    boolean command_mode;
-    boolean associated;
-    uint8_t dhcp;
-    
+		boolean init();
+		boolean reset();
+		boolean reboot();
+
+		boolean join(const char *ssid, const char *phrase = NULL, int auth = WIFLY_AUTH_OPEN);
+		boolean leave();
+
+		boolean connect(const char *host, uint16_t port, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+
+		boolean staticIP(const char *ip, const char *mask, const char *gateway);
+
+		int send(const char *data, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+		int send(const uint8_t *data, int len, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+		int receive(uint8_t *buf, int len, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+
+		boolean ask(const char *q, const char *a, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+		boolean sendCommand(const char *cmd, const char *ack = NULL, int timeout = DEFAULT_WAIT_RESPONSE_TIME);
+
+		boolean commandMode();
+		boolean dataMode();
+
+		void clear();
+
+		float version();
+
+	private:
+		static WiFly*  instance;
+
+		boolean command_mode;
+		boolean associated;
+		uint8_t dhcp;
 };
 
 #endif // __WIFLY_H__
